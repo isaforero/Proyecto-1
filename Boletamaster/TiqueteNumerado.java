@@ -1,10 +1,10 @@
 package Boletamaster;
 
 public class TiqueteNumerado extends Tiquete {
-    private String asiento; 
+    private String asiento;
 
-    public TiqueteNumerado(String id, double precio, Localidad localidad, String asiento) {
-        super(id, precio, localidad);
+    public TiqueteNumerado(String id, double precio, Localidad l, String asiento) {
+        super(id, precio, l);
         this.asiento = asiento;
     }
 

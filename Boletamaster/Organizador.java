@@ -9,32 +9,34 @@ public class Organizador extends Cliente {
 
     public Organizador(String id, String login, String password) {
         super(id, login, password);
-        this.listaEventos = new ArrayList<Evento>();
+        listaEventos = new ArrayList<>();
     }
 
-    public Evento crearEvento(String id, String nombre, Venue venue,
-                              LocalDate fecha, LocalTime hora, String tipoEvento) {
-        Evento e = new Evento(id, nombre, venue, fecha, hora, tipoEvento);
+    public Evento crearEvento(String id, String nombre, Venue v, LocalDate fecha, LocalTime hora, String tipo) {
+        if (!v.reservarFecha(fecha)) {
+            System.out.println("El venue ya tiene un evento ese día.");
+            return null;
+        }
+        Evento e = new Evento(id, nombre, v, fecha, hora, tipo);
         listaEventos.add(e);
         return e;
     }
 
-    public Localidad crearLocalidad(Evento e, String id, String nombre,
-                                    double precioBase, boolean numerada, int aforo) {
-        Localidad l = new Localidad(id, nombre, precioBase, numerada, aforo, e);
+    public Localidad crearLocalidad(Evento e, String id, String nombre, double precio, boolean numerada, int aforo) {
+        Localidad l = new Localidad(id, nombre, precio, numerada, aforo, e);
         e.agregarLocalidad(l);
         return l;
     }
 
-    public Oferta crearOferta(Localidad l, String id, double descuento,
-                              java.time.LocalDateTime inicio,
-                              java.time.LocalDateTime fin) {
-        Oferta o = new Oferta(id, descuento, inicio, fin);
+    public Oferta crearOferta(Localidad l, String id, double descuento) {
+        Oferta o = new Oferta(id, descuento);
         l.agregarOferta(o);
         return o;
     }
 
-    public ArrayList<Evento> getListaEventos() { 
-        return listaEventos; 
+    public String verGanancias() {
+        return "Ganancias totales: $" + (listaEventos.size() * 100000);
     }
+
+    public ArrayList<Evento> getEventos() { return listaEventos; }
 }
