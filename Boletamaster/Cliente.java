@@ -5,8 +5,8 @@ import java.util.ArrayList;
 public class Cliente extends Usuario {
 
     private double saldo;
-    private ArrayList<Tiquete> tiquetes;   // lo comprado
-    private ArrayList<Tiquete> carrito;    // para UML
+    private ArrayList<Tiquete> tiquetes;  
+    private ArrayList<Tiquete> carrito;  
 
     public Cliente(String id, String login, String password) {
         super(id, login, password);
@@ -15,7 +15,6 @@ public class Cliente extends Usuario {
         this.carrito = new ArrayList<>();
     }
 
-    // saldo
     public void abonarSaldo(double valor) { if (valor > 0) saldo += valor; }
     public double getSaldo() { return saldo; }
 
@@ -55,7 +54,6 @@ public class Cliente extends Usuario {
         return p;
     }
 
-    // Compatibilidad con tu Main actual
     public Pago comprarTiquetes(ArrayList<Tiquete> lista, Administrador admin) {
         if (lista == null || lista.isEmpty()) return null;
 
@@ -76,7 +74,7 @@ public class Cliente extends Usuario {
         return p;
     }
 
-    // transferir (con contraseña)
+
     public boolean transferirTiquete(Tiquete t, Cliente destino, String pass) {
         if (t == null || destino == null) return false;
         if (!this.password.equals(pass)) return false;
