@@ -1,20 +1,23 @@
 package Boletamaster;
 
-
 public class Administrador extends Usuario {
-    private double porcentajeDeServicio; 
-    private double cuotaDeEmision;       
+    private double porcentajeServicio;
+    private double cuotaEmision;
 
     public Administrador(String id, String login, String password) {
         super(id, login, password);
-        this.porcentajeDeServicio = 0;
-        this.cuotaDeEmision = 0;
     }
 
+
     public void configurarTarifas(double porcentaje, double cuota) {
-        this.porcentajeDeServicio = porcentaje;
-        this.cuotaDeEmision = cuota;
+        this.porcentajeServicio = porcentaje;
+        this.cuotaEmision = cuota;
     }
+
+    public boolean aprobarVenue(Venue v) { 
+        return v != null; 
+    }
+
 
     public boolean cancelarEvento(Evento e) {
         if (e == null) return false;
@@ -22,6 +25,18 @@ public class Administrador extends Usuario {
         return true;
     }
 
-    public double getPorcentajeDeServicio() { return porcentajeDeServicio; }
-    public double getCuotaDeEmision() { return cuotaDeEmision; }
+    public boolean procesarReembolso(Cliente c, Evento e) {
+        if (c == null || e == null) return false;
+        double total = 0;
+        for (Tiquete t : c.getTiquetes()) {
+            if (t.getLocalidad() != null && t.getLocalidad().getEvento() == e) {
+                total += t.calcularPrecioTotal(this);
+            }
+        }
+        c.abonarSaldo(total);
+        return true;
+    }
+
+    public double getPorcentajeServicio() { return porcentajeServicio; }
+    public double getCuotaEmision() { return cuotaEmision; }
 }
