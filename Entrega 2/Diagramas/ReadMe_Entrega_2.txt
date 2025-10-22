@@ -1,1 +1,0 @@
-Este archivo solo lo uso para actualizar el repositorio con la creación de la carpeta donde colocaremos los diagramas (UML y el diagrama de secuencia)

@@ -2,6 +2,8 @@ package Boletamaster;
 
 import java.util.ArrayList;
 
+import Boletamaster.Evento;
+
 public class PaqueteTiquetes extends Tiquete {
     private double precioTotal;
     private String beneficios;

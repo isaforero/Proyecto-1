@@ -1,5 +1,7 @@
 package Boletamaster;
 
+import java.util.*;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -18,6 +20,7 @@ public class Main {
     public static void main(String[] args) {
         seed();          // datos iniciales
         loopPrincipal(); // menús de organizador, cliente
+        Main consola = new Main();
     }
 
     // Seed inicial
@@ -361,7 +364,7 @@ public class Main {
     }
 
     // ayudanstes
-    private static Usuario buscarUsuarioPorLogin(String login) {
+    /*private*/public static Usuario buscarUsuarioPorLogin(String login) {
         for (Usuario u : usuarios) if (u.getLogin().equals(login)) return u;
         return null;
     }
@@ -371,12 +374,12 @@ public class Main {
         return null;
     }
 
-    private static Localidad buscarLocalidadPorNombre(String nombre) {
+   private static Localidad buscarLocalidadPorNombre(String nombre) {
         for (Localidad l : localidades) if (l.getNombre().equalsIgnoreCase(nombre)) return l;
         return null;
     }
 
-    private static Tiquete buscarTiquetePorId(String id) {
+   private static Tiquete buscarTiquetePorId(String id) {
         for (Tiquete t : inventario) if (t.getId().equalsIgnoreCase(id)) return t;
         return null;
     }
