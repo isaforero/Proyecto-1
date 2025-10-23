@@ -7,5 +7,6 @@
 	</classpathentry>
 	<classpathentry kind="src" path="Entrega 2/Implementacion/src"/>
 	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="Entrega - 2"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
